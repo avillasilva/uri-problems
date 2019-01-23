@@ -9,8 +9,8 @@ public class problem1030 {
 	private Node next;
 	private Node previous;
 	
-	public Node(int content) {
-	    this.content = content;
+	public Node() {
+	    this.content = 0;
 	    this.next = null;
 	    this.previous = null;
 	}
@@ -42,7 +42,8 @@ public class problem1030 {
 
     public static void main(String[] args) {
 	Scanner scan = new Scanner(System.in);	
-	int nc, k, n;
+	int nc, k, n, nNodes;
+	Node head, aux;
 
 	nc = scan.nextInt();
 
@@ -50,40 +51,44 @@ public class problem1030 {
 	    n = scan.nextInt();
 	    k = scan.nextInt();
 
-	    Node root = new Node(1); 
-	    root.setNext(root);
-	    root.setPrevious(root);
+	    head = new Node(); 
+	    head.setContent(1);
+	    head.setNext(head);
+	    head.setPrevious(head);
 
-	    int nNodes = 0;
+	    nNodes = 1;
 
-	    Node aux = root;
-	    for(int i = 2; i < n; i++) {
+	    aux = head;
+	    for(int i = 2; i <= n; i++) {
 
-		Node node = new Node(i);
+		Node node = new Node();
+		node.setContent(i);
 		node.setPrevious(aux);
-		node.setNext(root);
+		node.setNext(head);
 
 		aux.setNext(node);
 		aux = node;
 
 		nNodes++;
 	    }
-
-	    aux = root;
+    
+	    aux = head;
 	    while(nNodes != 1) {
-
-		for(int i = 0; i < k; i++)	
+		for(int i = 1; i < k; i++)	
 		    aux = aux.getNext();
 
 		aux.getPrevious().setNext(aux.getNext());
 		aux.getNext().setPrevious(aux.getPrevious());
-		aux = aux.getNext();
 
 		nNodes--;
+
+		if(nNodes != 1)
+		    aux = aux.getNext();
+		System.out.println(aux.getContent());
 	    }
-
-	    System.out.println(aux.getContent());
-
+	    
+	    System.out.println();
+    
 	    nc--;
 	}
     }
