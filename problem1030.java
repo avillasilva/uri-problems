@@ -73,21 +73,22 @@ public class problem1030 {
 	    }
     
 	    aux = head;
+	    System.out.println(nNodes);
 	    while(nNodes != 1) {
 		for(int i = 1; i < k; i++)	
 		    aux = aux.getNext();
-
+		
+		System.out.println(aux.getContent());
 		aux.getPrevious().setNext(aux.getNext());
 		aux.getNext().setPrevious(aux.getPrevious());
-
-		nNodes--;
+		
+		nNodes--; 
 
 		if(nNodes != 1)
 		    aux = aux.getNext();
-		System.out.println(aux.getContent());
 	    }
 	    
-	    System.out.println();
+	    System.out.println(aux.getPrevious().getContent() + " " + aux.getContent() + " " + aux.getNext().getContent());
     
 	    nc--;
 	}
