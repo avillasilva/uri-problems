@@ -45,8 +45,8 @@ public class problem1030 {
 	int nc, k, n, nNodes;
 	Node head, aux;
 
-	nc = scan.nextInt();
-
+	nc = scan.nextInt();	
+	int count = 1;
 	while (nc > 0) {
 	    n = scan.nextInt();
 	    k = scan.nextInt();
@@ -71,25 +71,22 @@ public class problem1030 {
 
 		nNodes++;
 	    }
+	    head.setPrevious(aux);
     
 	    aux = head;
-	    System.out.println(nNodes);
 	    while(nNodes != 1) {
+		
 		for(int i = 1; i < k; i++)	
 		    aux = aux.getNext();
 		
-		System.out.println(aux.getContent());
 		aux.getPrevious().setNext(aux.getNext());
 		aux.getNext().setPrevious(aux.getPrevious());
-		
-		nNodes--; 
-
-		if(nNodes != 1)
-		    aux = aux.getNext();
+		aux = aux.getNext();	
+		nNodes--; 	
 	    }
 	    
-	    System.out.println(aux.getPrevious().getContent() + " " + aux.getContent() + " " + aux.getNext().getContent());
-    
+	    System.out.println("Case " + count + ": " +  aux.getContent());
+	    count++; 
 	    nc--;
 	}
     }
