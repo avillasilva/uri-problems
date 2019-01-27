@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Scanner;
 
@@ -40,7 +41,7 @@ public class problem1030 {
 	}
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 	Scanner scan = new Scanner(System.in);	
 	int nc, k, n, nNodes;
 	Node head, aux;
